@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 10.0f
+    private float speed = 1.0f;
         private Rigidbody playerRb;
+    private float xBound = 15;
+    private float zBound = 15;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,11 +17,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        MovePlayer();
+    }
+    void MovePlayer()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
-        float horizontalInput = Input.GetAxis("Vertical");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        playerRb.AddForce(Vector3.right * speed * verticalInput);
-        playerRb.AddForce(Vector3.right * speed * horizontalInput);
-
+        transform.Translate(Vector3.right * speed * horizontalInput);
+        transform.Translate(Vector3.forward * speed * verticalInput);
     }
 }
